@@ -13,7 +13,9 @@ import javax.swing.JOptionPane;
  * @author aparracorbacho
  */
 public class juegoCalc {
-
+    int jugaste = 0;
+    int ganaste = 0;
+    int perdiste = 0;
     int numamigo = 0;
     int numMaxAmigo;
 
@@ -28,6 +30,7 @@ public class juegoCalc {
     }
 
     public void jugaracom() {
+        jugaste++;
         int repetir = 0; // El valor 0 indica que no has acertado
         for (int i = 0; (i < numMaxAmigo && repetir == 0); i++) {
             System.out.println("===================================\nTienes " + (numMaxAmigo - i) + " intentos");
@@ -35,9 +38,11 @@ public class juegoCalc {
             Scanner numPTeclado = new Scanner(System.in);
             int numP = numPTeclado.nextInt();
             if (numP == numamigo) {
+                ganaste++;
                 System.out.println("-----------------------------------\nAcertaste el numero, enhorabuena!\n-----------------------------------");
                 repetir = 1;
             } else if (numMaxAmigo == (i + 1)) {
+                perdiste++;
                 System.out.println("-----------------------------------\nNo has acertado, se acabó el juego\n-----------------------------------");
                 repetir = 1;
             } else if (numP < numamigo) {
@@ -53,7 +58,7 @@ public class juegoCalc {
         int numAleatorio = (int) (Math.random() * 50 + 1);
         int numIntentos = 1; // Valor 1 repite la pregunta del numero de intentos
         do {
-        System.out.println("Quieres intentos ilimitados o numero de intentos?(Teclea 'ilimitados' o 'limitados')");
+        System.out.println("Quieres intentos ilimitados o con un numero de intentos?(Teclea 'ilimitados' o 'limitados')");
         Scanner intentosTeclado = new Scanner(System.in);
         String intentos = intentosTeclado.next();
         switch (intentos){
@@ -75,6 +80,7 @@ public class juegoCalc {
         } while (numIntentos == 1);
     }
     public void jugarsololimitado(int numAleatorio,int numIntentosSolo){
+        jugaste++;
            int acertaste = 1; //Valor 1 indica que has acertado
         do {
             for (int i=0;i<numIntentosSolo;i++) {
@@ -84,9 +90,11 @@ public class juegoCalc {
             int numal = numalTeclado.nextInt();
             int numAB = Math.abs((numAleatorio - numal));
             if (numAB == 0) {
+                ganaste++;
                 System.out.println("===================================\nAcertaste el numero, enhorabuena!\n-----------------------------------");
                 acertaste = 1;
             } else if (numIntentosSolo == i+1) {
+                perdiste++;
                 System.out.println("===================================\nNo has acertado el numero era el "+numAleatorio +" se acabó el juego\n-----------------------------------");
                 acertaste = 1;
             } else if (numAB > 20) {
@@ -107,6 +115,7 @@ public class juegoCalc {
         } while (acertaste == 0);
     }
     public void jugarsoloilimitado(int numAleatorio){
+        jugaste++;
               int acertaste = 1; //Valor 1 indica que has acertado
         do {
             System.out.println("-----------------------------------\nPrueba con un numero");
@@ -114,6 +123,7 @@ public class juegoCalc {
             int numal = numalTeclado.nextInt();
             int numAB = Math.abs((numAleatorio - numal));
             if (numAB == 0) {
+                ganaste++;
                 System.out.println("-----------------------------------\nAcertaste el numero, era el "+numAleatorio +" !Enhorabuena!\n-----------------------------------");
                 acertaste = 1;
             } else if (numAB > 20) {
@@ -140,7 +150,7 @@ public class juegoCalc {
                 Scanner repetirpTeclado = new Scanner(System.in);
                 repetirp = repetirpTeclado.next();
                 if (repetirp.equals("no")) {
-                    System.out.println("-----------------------------------\nGracias por jugar\n-----------------------------------");
+                    System.out.println("-----------------------------------\nJugaste "+jugaste +" veces\nGanaste "+ganaste +" veces\nPerdiste "+perdiste +" veces\nGracias por jugar\n-----------------------------------");
                     repetirm = 0;
                 } else if ((!repetirp.equals("si"))) {
                     System.out.println("No es una respuesta valida, responde 'si' o 'no'");

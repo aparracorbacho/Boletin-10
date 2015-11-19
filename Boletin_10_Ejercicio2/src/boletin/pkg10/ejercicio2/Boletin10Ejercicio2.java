@@ -18,9 +18,9 @@ public class Boletin10Ejercicio2 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        String repetirp = "si";
+        String repetirp;
         do {
-            System.out.println("Vamos a jugar a un juego");
+            System.out.println("Vamos a jugar a un juego\nRecuerda que los numeros son entre 1 y 50 y no son negativos");
             juegoCalc obx = new juegoCalc();
             int repetirp1 = 1; //El valor uno indica que no es una respuesta valida
             do {
