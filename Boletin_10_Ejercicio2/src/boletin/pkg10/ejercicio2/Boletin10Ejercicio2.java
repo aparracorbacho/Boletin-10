@@ -18,46 +18,31 @@ public class Boletin10Ejercicio2 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        String repetirp;
+        String repetirp = "si";
         do {
             System.out.println("Vamos a jugar a un juego");
             juegoCalc obx = new juegoCalc();
-           
-          
-            int repetirp1 = 1;
+            int repetirp1 = 1; //El valor uno indica que no es una respuesta valida
             do {
-            System.out.println("Quieres jugar solo o con un amigo?(Teclea 'solo' o 'amigo')");
-            Scanner cjugarTeclado = new Scanner(System.in);
-            String cjugar = cjugarTeclado.next();
-            switch (cjugar){
-                case "amigo": 
-                    obx.pedirnum();
-                    obx.jugaracom();
-                    repetirp1 = 0;
-                    break;
-                case "solo":
-                    obx.jugarsolo();
-                    repetirp1 = 0;
-                    break;
-                default:
-                    System.out.println("No es una respuesta valida, vuelve a probar");
-                    repetirp1 = 1;
-            }
+                System.out.println("Quieres jugar solo o con un amigo?(Teclea 'solo' o 'amigo')");
+                Scanner cjugarTeclado = new Scanner(System.in);
+                String cjugar = cjugarTeclado.next();
+                switch (cjugar) {
+                    case "amigo":
+                        obx.pedirnum();
+                        obx.jugaracom();
+                        repetirp1 = 0;
+                        break;
+                    case "solo":
+                        obx.jugarsolo();
+                        repetirp1 = 0;
+                        break;
+                    default:
+                        System.out.println("No es una respuesta valida, vuelve a probar");
+                        repetirp1 = 1;
+                }
             } while (repetirp1 == 1);
-          
-            int repetirm = 0;
-            do {
-            System.out.println("Quieres volver a jugar?\nResponde 'si' o 'no'");
-            Scanner repetirpTeclado = new Scanner(System.in);
-            repetirp = repetirpTeclado.next();
-            if (repetirp.equals("no")) {
-                System.out.println("-----------------------------------\nGracias por jugar\n-----------------------------------");
-                repetirm = 0;
-            } else if ((!repetirp.equals("si"))) {
-                System.out.println("No es una respuesta valida, responde 'si' o 'no'");
-                repetirm = 1;
-            }
-            } while (repetirm == 1);
+            repetirp=obx.volverjugar();
         } while (repetirp.equals("si"));
     }
 
