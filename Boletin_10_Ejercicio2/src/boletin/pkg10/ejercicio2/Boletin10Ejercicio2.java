@@ -25,9 +25,8 @@ public class Boletin10Ejercicio2 {
             int ptipojugar = 1; //El valor uno indica que no es una respuesta valida
             do {
                 juego.imprimir("Quieres jugar solo o con un amigo?(Teclea 'solo' o 'amigo')");
-                Scanner cjugarTeclado = new Scanner(System.in);
-                String cjugar = cjugarTeclado.next();
-                switch (cjugar) {
+                String comojugar = juego.pedirdato();
+                switch (comojugar) {
                     case "amigo":
                         juego.pedirnum();
                         juego.jugaracom();

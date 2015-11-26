@@ -23,10 +23,10 @@ public class juegoCalc {
     public void pedirnum() {
         System.out.println("Vamos a empezar!\nIntroduce un numero del 1 al 50 para que tu amigo lo adivine");
         do {
-            numamigo = Integer.parseInt(JOptionPane.showInputDialog("Introduce el numero entre 1 y 50"));
+            numamigo = pedirnumventana("Introduce el numero entre 1 y 50");
         } while (numamigo < 1 || numamigo > 50);
         do {
-            numMaxAmigo = Integer.parseInt(JOptionPane.showInputDialog("Introduce el numero máxmimo de intentos, tiene que ser mayor que 0"));
+            numMaxAmigo = pedirnumventana("Introduce el numero máxmimo de intentos, tiene que ser mayor que 0");
         } while (numMaxAmigo < 0);
     }
 
@@ -35,8 +35,7 @@ public class juegoCalc {
         for (int i = 0; (i < numMaxAmigo && repetir == 0); i++) {
             imprimir("===================================\nTienes " + (numMaxAmigo - i) + " intentos");
             imprimir("Prueba con un numero");
-            Scanner numPTeclado = new Scanner(System.in);
-            int numP = numPTeclado.nextInt();
+            int numP = pedirnumt();
             if (numP == numamigo) {
                 ganaste++;
                 imprimir("-----------------------------------\nAcertaste el numero, enhorabuena!\n-----------------------------------");
@@ -60,8 +59,7 @@ public class juegoCalc {
         int numIntentos = 1; // Valor 1 repite la pregunta del numero de intentos
         do {
             imprimir("Quieres intentos ilimitados o con un numero de intentos?(Teclea 'ilimitados' o 'limitados')");
-            Scanner intentosTeclado = new Scanner(System.in);
-            String intentos = intentosTeclado.next();
+            String intentos = pedirdato();
             switch (intentos) {
                 case "ilimitados":
                     jugarsoloilimitado(numAleatorio);
@@ -69,8 +67,7 @@ public class juegoCalc {
                     break;
                 case "limitados":
                     imprimir("Introduce el numero de intentos que quieres");
-                    Scanner numIntentosSoloTeclado = new Scanner(System.in);
-                    int numIntentosSolo = numIntentosSoloTeclado.nextInt();
+                    int numIntentosSolo = pedirnumt();
                     jugarsololimitado(numAleatorio, numIntentosSolo);
                     numIntentos = 0;
                     break;
@@ -89,8 +86,7 @@ public class juegoCalc {
             for (int i = 0; i < numIntentosSolo; i++) {
                 imprimir("-----------------------------------\nTienes " + (numIntentosSolo - i) + " intentos");
                 imprimir("Prueba con un numero");
-                Scanner numalTeclado = new Scanner(System.in);
-                int numal = numalTeclado.nextInt();
+                int numal = pedirnumt();
                 int numAB = Math.abs((numAleatorio - numal));
                 if (numAB == 0) {
                     ganaste++;
@@ -124,8 +120,7 @@ public class juegoCalc {
         int acertaste = 1; //Valor 1 indica que has acertado
         do {
             imprimir("-----------------------------------\nPrueba con un numero");
-            Scanner numalTeclado = new Scanner(System.in);
-            int numal = numalTeclado.nextInt();
+            int numal = pedirnumt();
             int numAB = Math.abs((numAleatorio - numal));
             if (numAB == 0) {
                 ganaste++;
@@ -154,8 +149,7 @@ public class juegoCalc {
         int pvolversino = 0; //Valor 0 indica que no quieres repetir
         do {
             imprimir("Quieres volver a jugar?\nResponde 'si' o 'no'");
-            Scanner repetirpTeclado = new Scanner(System.in);
-            pvolverjugar = repetirpTeclado.next();
+            pvolverjugar = pedirdato();
             if (pvolverjugar.equals("no")) {
                 imprimir("-----------------------------------\nJugaste " + jugaste + " veces\nGanaste " + ganaste + " veces\nPerdiste " + perdiste + " veces\nGracias por jugar\n-----------------------------------");
                 pvolversino = 0;
@@ -169,5 +163,18 @@ public class juegoCalc {
     }
     public void imprimir(String imprimir){
         System.out.println(imprimir);
+    }
+    public int pedirnumt (){
+        Scanner pedirTeclado = new Scanner(System.in);
+        int pedir = pedirTeclado.nextInt();
+        return pedir;
+    }
+    public String pedirdato(){
+        Scanner pedirTeclado = new Scanner(System.in);
+        String pedir = pedirTeclado.next();
+        return pedir;
+    }
+    public int pedirnumventana(String pedir){
+        return Integer.parseInt(JOptionPane.showInputDialog(pedir));
     }
 }
