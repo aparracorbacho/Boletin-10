@@ -18,32 +18,33 @@ public class Boletin10Ejercicio2 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        String repetirp;
+        String pvolverjugar;
+        juegoCalc juego = new juegoCalc();
         do {
-            System.out.println("Vamos a jugar a un juego\nRecuerda que los numeros son entre 1 y 50 y no son negativos");
-            juegoCalc obx = new juegoCalc();
-            int repetirp1 = 1; //El valor uno indica que no es una respuesta valida
+            juego.imprimir("Vamos a jugar a un juego\nRecuerda que los numeros son entre 1 y 50 y no son negativos");
+            int ptipojugar = 1; //El valor uno indica que no es una respuesta valida
             do {
-                System.out.println("Quieres jugar solo o con un amigo?(Teclea 'solo' o 'amigo')");
+                juego.imprimir("Quieres jugar solo o con un amigo?(Teclea 'solo' o 'amigo')");
                 Scanner cjugarTeclado = new Scanner(System.in);
                 String cjugar = cjugarTeclado.next();
                 switch (cjugar) {
                     case "amigo":
-                        obx.pedirnum();
-                        obx.jugaracom();
-                        repetirp1 = 0;
+                        juego.pedirnum();
+                        juego.jugaracom();
+                        ptipojugar = 0;
                         break;
                     case "solo":
-                        obx.jugarsolo();
-                        repetirp1 = 0;
+                        juego.jugarsolo();
+                        ptipojugar = 0;
                         break;
                     default:
-                        System.out.println("No es una respuesta valida, vuelve a probar");
-                        repetirp1 = 1;
+                        juego.imprimir("No es una respuesta valida, vuelve a probar");
+                        ptipojugar = 1;
                 }
-            } while (repetirp1 == 1);
-            repetirp=obx.volverjugar();
-        } while (repetirp.equals("si"));
+            } while (ptipojugar == 1);
+            pvolverjugar = juego.volverjugar();
+        } while (pvolverjugar.equals("si"));
     }
 
 }
+
